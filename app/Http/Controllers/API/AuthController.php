@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -15,11 +16,12 @@ class AuthController extends Controller
 
         if(!$user || !\Hash::check($request->password, $user->password)){ // jika user tidak ketemu atau password salah
 
-            return response()->json([
-
-                'message' => 'Password Tidak Sesuai / Unauthorized'
-
-            ],401);
+            // return response()->json([
+            //     'message' => 'Password Tidak Sesuai / Unauthorized'
+            // ],401);
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect'],
+            ]);
         }
 
         $token = $user->createToken('token-name')->plainTextToken;
