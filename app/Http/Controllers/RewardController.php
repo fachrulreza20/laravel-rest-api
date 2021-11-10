@@ -24,6 +24,32 @@ class RewardController extends Controller
     public function store(Request $request)
     {
 
+
+/* contoh postman
+
+{
+    "nip": "110456",
+    "nama": "GALIH BAGUS",
+    "kodecabang": "ID0010022",
+    "kodejabatan": "2",
+    "rewardlist" : [
+        {
+            "reward_name" : "reward1",
+            "year" : "2020",
+            "score" : "100"
+        },
+        {
+            "reward_name" : "reward2",
+            "year" : "2022",
+            "score" : "99"
+        }
+
+    ]
+}
+
+*/
+
+
         $employee = new Employee;
         $employee->nip = $request->nip;
         $employee->nama = $request->nama;
@@ -46,6 +72,10 @@ class RewardController extends Controller
         return response()->json([
             "message" => "Employee and Reward Store Successfully"
         ]);
+
+
+
+
 
 
     }
