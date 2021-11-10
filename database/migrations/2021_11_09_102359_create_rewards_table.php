@@ -15,6 +15,7 @@ class CreateRewardsTable extends Migration
     {
         Schema::create('rewards', function (Blueprint $table) {
             $table->id();
+            $table->integer('employee_id');
             $table->string('reward_name');
             $table->string('year');
             $table->string('score');
